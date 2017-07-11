@@ -14,6 +14,8 @@
 		97705D1A1EF9B2C90015B1EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97705D181EF9B2C90015B1EC /* Main.storyboard */; };
 		97705D1C1EF9B2C90015B1EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97705D1B1EF9B2C90015B1EC /* Assets.xcassets */; };
 		97705D1F1EF9B2C90015B1EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97705D1D1EF9B2C90015B1EC /* LaunchScreen.storyboard */; };
+		97D209EC1F1542C8007DF9AD /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D209EB1F1542C8007DF9AD /* Realm.framework */; };
+		97D209EE1F1542CB007DF9AD /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D209ED1F1542CB007DF9AD /* RealmSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		97705D1B1EF9B2C90015B1EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97705D1E1EF9B2C90015B1EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97705D201EF9B2C90015B1EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97D209EB1F1542C8007DF9AD /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		97D209ED1F1542CB007DF9AD /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97D209EC1F1542C8007DF9AD /* Realm.framework in Frameworks */,
+				97D209EE1F1542CB007DF9AD /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +75,7 @@
 			children = (
 				97705D131EF9B2C90015B1EC /* TODO LIST */,
 				97705D121EF9B2C90015B1EC /* Products */,
+				97D209EA1F1542C6007DF9AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +101,15 @@
 			path = "TODO LIST";
 			sourceTree = "<group>";
 		};
+		97D209EA1F1542C6007DF9AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97D209ED1F1542CB007DF9AD /* RealmSwift.framework */,
+				97D209EB1F1542C8007DF9AD /* Realm.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,6 +120,7 @@
 				97705D0D1EF9B2C90015B1EC /* Sources */,
 				97705D0E1EF9B2C90015B1EC /* Frameworks */,
 				97705D0F1EF9B2C90015B1EC /* Resources */,
+				97D209EF1F154315007DF9AD /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -161,6 +178,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		97D209EF1F154315007DF9AD /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		97705D0D1EF9B2C90015B1EC /* Sources */ = {
@@ -296,6 +332,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RT5RW3DL77;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "TODO LIST/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.bepiducb.ifm.TODO-LIST";
@@ -309,6 +349,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RT5RW3DL77;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "TODO LIST/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.bepiducb.ifm.TODO-LIST";
