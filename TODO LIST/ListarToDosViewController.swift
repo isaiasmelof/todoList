@@ -7,22 +7,25 @@
 //
 
 import UIKit
+import RealmSwift
 
-
-var toDos : [Todo] = []
 
 class ListarToDosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ToDoTableViewControllerDelegate{
 
     
     //MARK: - Variaveis
     
+    let dao = ToDoDAO()
+    var toDoss: Results<Todo>! = nil
     
-    
+    @IBOutlet weak var label: UITextField!
     @IBOutlet weak var tableViewToDos: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Listar To-Do's"
+        self.toDoss = dao.getAll()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,19 +37,19 @@ class ListarToDosViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDos.count
+        return toDoss.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        configurarTexto(da: cell, com: toDos[indexPath.row])
+        configurarTexto(da: cell, com: toDoss[indexPath.row])
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            toDos.remove(at: indexPath.row)
+            dao.delete(toDoss[indexPath.row])
             self.tableViewToDos.reloadData()
         }
     }
@@ -56,7 +59,8 @@ class ListarToDosViewController: UIViewController, UITableViewDelegate, UITableV
             let controller = segue.destination as! ToDoTableViewController
             controller.delegate = self
             if let indexPath = self.tableViewToDos.indexPath(for: sender as! UITableViewCell) {
-                controller.editToDo = toDos[indexPath.row]
+                controller.editToDo = toDoss[indexPath.row]
+                controller.indexEdit = indexPath.row
             }
         }
         if segue.identifier == "add" {
@@ -67,18 +71,19 @@ class ListarToDosViewController: UIViewController, UITableViewDelegate, UITableV
     
 
     func toDoTableViewController(_ controller: ToDoTableViewController, didFinishAdding toDo: Todo){
-        toDos.append(toDo)
+        //toDos.append(toDo)
+        dao.insert(toDo: toDo)
         self.tableViewToDos.reloadData()
         self.navigationController?.popViewController(animated: true)
     }
     
-    func toDoTableViewController(_ controller: ToDoTableViewController, didFinishEditing toDo: Todo){
-        if let index = toDos.index(of: toDo) {
-            let indexPath = IndexPath(row: index, section: 0)
-            let cell = self.tableViewToDos.cellForRow(at: indexPath)
-            configurarTexto(da: cell!, com: toDo)
-            self.navigationController?.popViewController(animated: true)
-        }
+    func toDoTableViewController(_ controller: ToDoTableViewController, didFinishEditing toDo: Todo, indexEdit: Int){
+        dao.update(oldToDo: self.toDoss[indexEdit], newTodo: toDo)
+        let indexPath = IndexPath(row: indexEdit, section: 0)
+        let cell = self.tableViewToDos.cellForRow(at: indexPath)
+        configurarTexto(da: cell!, com: toDo)
+        self.navigationController?.popViewController(animated: true)
+
     }
     
     func configurarTexto (da cell: UITableViewCell, com toDo: Todo) {

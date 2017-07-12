@@ -7,15 +7,22 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Todo : NSObject {
-    var nome : String
-    var descricao: String
-    var data: String
+class Todo : Object {
+    dynamic var nome : String = ""
+    dynamic var descricao: String = ""
+    dynamic var data: String = ""
+    dynamic var id : String = UUID().uuidString
     
-    init(nome: String, descricao: String, data: String) {
+    convenience init(nome: String, descricao: String, data: String) {
+        self.init()
         self.nome = nome
         self.descricao = descricao
         self.data = data
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

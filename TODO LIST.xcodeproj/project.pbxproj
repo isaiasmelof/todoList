@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9719F6BB1F1693F70042962B /* ToDoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719F6BA1F1693F70042962B /* ToDoDAO.swift */; };
 		975BB1641EFC3DC2000AA714 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975BB1631EFC3DC2000AA714 /* Todo.swift */; };
 		975BB1661EFC3E9B000AA714 /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975BB1651EFC3E9B000AA714 /* ToDoTableViewController.swift */; };
 		975BB1681EFC4DBA000AA714 /* ListarToDosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975BB1671EFC4DBA000AA714 /* ListarToDosViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9719F6BA1F1693F70042962B /* ToDoDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoDAO.swift; sourceTree = "<group>"; };
 		975BB1631EFC3DC2000AA714 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		975BB1651EFC3E9B000AA714 /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
 		975BB1671EFC4DBA000AA714 /* ListarToDosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListarToDosViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				975BB1631EFC3DC2000AA714 /* Todo.swift */,
+				9719F6BA1F1693F70042962B /* ToDoDAO.swift */,
 			);
 			name = entidades;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				975BB1661EFC3E9B000AA714 /* ToDoTableViewController.swift in Sources */,
 				975BB1641EFC3DC2000AA714 /* Todo.swift in Sources */,
+				9719F6BB1F1693F70042962B /* ToDoDAO.swift in Sources */,
 				97705D151EF9B2C90015B1EC /* AppDelegate.swift in Sources */,
 				975BB1681EFC4DBA000AA714 /* ListarToDosViewController.swift in Sources */,
 			);

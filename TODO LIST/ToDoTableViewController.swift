@@ -10,7 +10,7 @@ import UIKit
 
 protocol ToDoTableViewControllerDelegate: class {
     func toDoTableViewController(_ controller: ToDoTableViewController, didFinishAdding toDo: Todo)
-    func toDoTableViewController(_ controller: ToDoTableViewController, didFinishEditing toDo: Todo)
+    func toDoTableViewController(_ controller: ToDoTableViewController, didFinishEditing toDo: Todo, indexEdit: Int)
 }
 
 class ToDoTableViewController: UITableViewController {
@@ -26,7 +26,7 @@ class ToDoTableViewController: UITableViewController {
     
     var dataDatePicker: UIDatePicker = UIDatePicker()
     var editToDo : Todo?
-    
+    var indexEdit: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
@@ -54,11 +54,12 @@ class ToDoTableViewController: UITableViewController {
     
     func adicionar () {
         
-        if let edit = self.editToDo {
-            edit.nome  = nomeTxtField.text!
-            edit.descricao = descricaoTxtView.text
-            edit.data = data.text!
-            delegate?.toDoTableViewController(self, didFinishEditing: edit)
+        if  self.editToDo != nil {
+            let x = Todo()
+            x.nome  = nomeTxtField.text!
+            x.descricao = descricaoTxtView.text
+            x.data = data.text!
+            delegate?.toDoTableViewController(self, didFinishEditing: x, indexEdit: indexEdit!)
         }else {
             let todo = Todo(nome: self.nomeTxtField.text!, descricao: self.descricaoTxtView.text, data: self.data.text!)
             delegate?.toDoTableViewController(self, didFinishAdding: todo)
